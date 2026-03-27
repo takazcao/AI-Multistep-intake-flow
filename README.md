@@ -66,3 +66,5 @@ src/
 ## Original Design
 
 Figma source: [Design AI Intake Flow](https://www.figma.com/design/NJoaCbLC67A1TdtF10qHjT/Design-AI-Intake-Flow)
+
+Youtube link: https://youtu.be/fRpxxXtLrws
