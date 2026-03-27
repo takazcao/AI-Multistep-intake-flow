@@ -52,16 +52,16 @@ src/
 
 ## Wizard Steps
 
-| # | Step | Description |
-|---|------|-------------|
-| 1 | General Settings | Agent name, role, language, greeting, fallback behaviour |
-| 2 | Knowledge Sources | Connect documents, URLs, and APIs |
-| 3 | Response Templates | Define structured reply patterns with variable substitution |
-| 4 | Tone & Style | Formality, response length, empathy sliders |
-| 5 | Integration Settings | Slack, Zendesk, Intercom, Freshdesk webhooks |
-| 6 | Ticket Triage | Routing rules, confidence threshold, autonomy level |
-| 7 | Review & Test | Run test scenarios against the configuration |
-| 8 | Deployment | Environment selection, rollout percentage, deploy |
+| #   | Step                 | Description                                                 |
+| --- | -------------------- | ----------------------------------------------------------- |
+| 1   | General Settings     | Agent name, role, language, greeting, fallback behaviour    |
+| 2   | Knowledge Sources    | Connect documents, URLs, and APIs                           |
+| 3   | Response Templates   | Define structured reply patterns with variable substitution |
+| 4   | Tone & Style         | Formality, response length, empathy sliders                 |
+| 5   | Integration Settings | Slack, Zendesk, Intercom, Freshdesk webhooks                |
+| 6   | Ticket Triage        | Routing rules, confidence threshold, autonomy level         |
+| 7   | Review & Test        | Run test scenarios against the configuration                |
+| 8   | Deployment           | Environment selection, rollout percentage, deploy           |
 
 ## Original Design
 
