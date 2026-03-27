@@ -23,18 +23,18 @@ export function Sidebar() {
   const progress = getProgressPercent(currentStepIndex);
 
   return (
-    <div className="flex flex-col h-full bg-[#1a1d26] border-r border-[#374151] shrink-0" style={{ width: 280 }}>
+    <div className="flex flex-col h-full bg-[var(--color-intake-sidebar)] border-r border-[var(--color-intake-border)] shrink-0" style={{ width: 280 }}>
       {/* Header */}
       <div className="p-8 pb-0">
         <h2
-          className="font-['Inter',sans-serif] text-white mb-2"
-          style={{ fontSize: 20, fontWeight: 600, lineHeight: "28px" }}
+          className="font-['Inter',sans-serif] text-white mb-2 font-semibold"
+          style={{ fontSize: 20, lineHeight: "28px" }}
         >
           {config.title}
         </h2>
         <p
-          className="font-['Inter',sans-serif] text-[#9ca3af]"
-          style={{ fontSize: 14, fontWeight: 400, lineHeight: "20px" }}
+          className="font-['Inter',sans-serif] text-[var(--color-intake-text-muted)]"
+          style={{ fontSize: 14, lineHeight: "20px" }}
         >
           {config.description}
         </p>
@@ -44,7 +44,7 @@ export function Sidebar() {
       <div className="flex-1 px-8 pt-6 relative">
         {/* Vertical line */}
         <div
-          className="absolute bg-[#374151]"
+          className="absolute bg-[var(--color-intake-border)]"
           style={{ left: 47, top: 40, bottom: 16, width: 2 }}
         />
 
@@ -58,29 +58,28 @@ export function Sidebar() {
               <button
                 key={step.id}
                 onClick={() => idx <= currentStepIndex && setCurrentStepIndex(idx)}
+                aria-current={isCurrent ? "step" : undefined}
                 className={`flex items-center gap-4 relative z-10 text-left ${
                   isFuture ? "opacity-50 cursor-default" : "cursor-pointer"
                 }`}
               >
                 {/* Step indicator */}
                 {isComplete ? (
-                  <div className="w-8 h-8 rounded-full bg-[rgba(16,185,129,0.2)] border border-[#10b981] flex items-center justify-center shrink-0">
-                    <Check size={12} className="text-[#10b981]" />
+                  <div className="w-8 h-8 rounded-full bg-[var(--color-intake-success)]/20 border border-[var(--color-intake-success)] flex items-center justify-center shrink-0">
+                    <Check size={12} className="text-[var(--color-intake-success)]" />
                   </div>
                 ) : isCurrent ? (
-                  <div className="w-8 h-8 rounded-full bg-[#3b82f6] flex items-center justify-center shrink-0 shadow-[0_10px_15px_-3px_rgba(59,130,246,0.3)]">
+                  <div className="w-8 h-8 rounded-full bg-[var(--color-intake-accent)] flex items-center justify-center shrink-0 shadow-[0_10px_15px_-3px_rgba(59,130,246,0.3)]">
                     <span
-                      className="font-['Inter',sans-serif] text-white text-[12px]"
-                      style={{ fontWeight: 700 }}
+                      className="font-['Inter',sans-serif] text-white text-[12px] font-bold"
                     >
                       {idx + 1}
                     </span>
                   </div>
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-[#1f2937] border border-[#4b5563] flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-[var(--color-intake-card)] border border-[var(--color-intake-border-hover)] flex items-center justify-center shrink-0">
                     <span
-                      className="font-['Inter',sans-serif] text-[#9ca3af] text-[12px]"
-                      style={{ fontWeight: 500 }}
+                      className="font-['Inter',sans-serif] text-[var(--color-intake-text-muted)] text-[12px] font-medium"
                     >
                       {idx + 1}
                     </span>
@@ -89,10 +88,9 @@ export function Sidebar() {
 
                 {/* Step label */}
                 <span
-                  className={`font-['JetBrains_Mono',monospace] text-[14px] tracking-[0.35px] uppercase ${
-                    isCurrent ? "text-white" : "text-[#9ca3af]"
+                  className={`font-['JetBrains_Mono',monospace] text-[14px] tracking-[0.35px] uppercase font-medium ${
+                    isCurrent ? "text-white" : "text-[var(--color-intake-text-muted)]"
                   }`}
-                  style={{ fontWeight: 500 }}
                 >
                   {step.label}
                 </span>
@@ -104,29 +102,35 @@ export function Sidebar() {
 
       {/* Progress */}
       <div className="px-8 pb-4">
-        <div className="w-full h-[6px] bg-[#374151] rounded-full mb-2">
+        <div
+          className="w-full h-[6px] bg-[var(--color-intake-border)] rounded-full mb-2"
+          role="progressbar"
+          aria-valuenow={progress}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label="Setup progress"
+        >
           <div
-            className="h-full bg-[#3b82f6] rounded-full transition-all duration-500"
+            className="h-full bg-[var(--color-intake-accent)] rounded-full transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
         <span
-          className="font-['JetBrains_Mono',monospace] text-[12px] tracking-[0.6px] text-[#9ca3af] uppercase"
-          style={{ fontWeight: 500 }}
+          className="font-['JetBrains_Mono',monospace] text-[12px] tracking-[0.6px] text-[var(--color-intake-text-muted)] uppercase font-medium"
         >
           {progress}% Completed
         </span>
       </div>
 
       {/* Previous button */}
-      <div className="border-t border-[#374151] bg-[#1a1d26] px-6 py-5">
+      <div className="border-t border-[var(--color-intake-border)] bg-[var(--color-intake-sidebar)] px-6 py-5">
         {currentStepIndex > 0 && (
           <button
             onClick={goToPrevious}
-            className="flex items-center gap-2 text-[#9ca3af] hover:text-white transition-colors"
+            className="flex items-center gap-2 text-[var(--color-intake-text-muted)] hover:text-white transition-colors"
           >
             <ChevronLeft size={14} />
-            <span className="font-['Inter',sans-serif] text-[14px]" style={{ fontWeight: 500 }}>
+            <span className="font-['Inter',sans-serif] text-[14px] font-medium">
               Previous: {SUB_STEPS[currentStepIndex - 1]?.label}
             </span>
           </button>

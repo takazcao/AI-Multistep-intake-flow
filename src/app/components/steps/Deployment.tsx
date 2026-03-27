@@ -25,19 +25,18 @@ export function Deployment() {
       <div className="flex items-center justify-between">
         <div>
           <h3
-            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase"
-            style={{ fontSize: 18, fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase font-medium"
+            style={{ fontSize: 18 }}
           >
             Deploy Agent
           </h3>
-          <p className="font-['Inter',sans-serif] text-[#9ca3af] mt-1" style={{ fontSize: 14, fontWeight: 400 }}>
+          <p className="font-['Inter',sans-serif] text-[var(--color-intake-text-muted)] mt-1" style={{ fontSize: 14, fontWeight: 400 }}>
             Finalize and deploy your AI Support Specialist to production.
           </p>
         </div>
         <button
           disabled={!acknowledged}
-          className="flex items-center gap-2 px-5 py-2.5 bg-[#10b981] text-white rounded-lg font-['Inter',sans-serif] text-[13px] hover:bg-[#059669] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-          style={{ fontWeight: 600 }}
+          className="flex items-center gap-2 px-5 py-2.5 bg-[var(--color-intake-success)] text-white rounded-lg font-['Inter',sans-serif] text-[13px] hover:bg-[var(--color-intake-success-hover)] transition-colors disabled:opacity-40 disabled:cursor-not-allowed font-semibold"
         >
           <Rocket size={16} />
           Deploy Now
@@ -45,12 +44,11 @@ export function Deployment() {
       </div>
 
       {/* Pre-deployment Checklist */}
-      <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
+      <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Shield size={16} className="text-[#3b82f6]" />
+          <Shield size={16} className="text-[var(--color-intake-accent)]" />
           <h4
-            className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase"
-            style={{ fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase font-medium"
           >
             Pre-Deployment Checklist
           </h4>
@@ -60,19 +58,18 @@ export function Deployment() {
           {checklistItems.map((item) => (
             <div key={item.id} className="flex items-center gap-3">
               {item.done ? (
-                <div className="w-5 h-5 rounded bg-[#10b981]/20 flex items-center justify-center">
-                  <Check size={12} className="text-[#10b981]" />
+                <div className="w-5 h-5 rounded bg-[var(--color-intake-success)]/20 flex items-center justify-center">
+                  <Check size={12} className="text-[var(--color-intake-success)]" />
                 </div>
               ) : (
-                <div className="w-5 h-5 rounded bg-[#f59e0b]/20 flex items-center justify-center">
-                  <AlertCircle size={12} className="text-[#f59e0b]" />
+                <div className="w-5 h-5 rounded bg-[var(--color-intake-warning)]/20 flex items-center justify-center">
+                  <AlertCircle size={12} className="text-[var(--color-intake-warning)]" />
                 </div>
               )}
               <span
                 className={`font-['Inter',sans-serif] text-[14px] ${
-                  item.done ? "text-[#d1d5db]" : "text-[#f59e0b]"
+                  item.done ? "text-[var(--color-intake-text-secondary)]" : "text-[var(--color-intake-warning)]"
                 }`}
-                style={{ fontWeight: 400 }}
               >
                 {item.label}
               </span>
@@ -82,10 +79,9 @@ export function Deployment() {
       </div>
 
       {/* Deployment Settings */}
-      <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
+      <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-6">
         <h4
-          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4"
-          style={{ fontWeight: 500 }}
+          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4 font-medium"
         >
           Deployment Configuration
         </h4>
@@ -94,8 +90,7 @@ export function Deployment() {
           {/* Environment */}
           <div>
             <label
-              className="font-['JetBrains_Mono',monospace] text-[#9ca3af] text-[12px] tracking-[0.6px] uppercase block mb-2"
-              style={{ fontWeight: 500 }}
+              className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-muted)] text-[12px] tracking-[0.6px] uppercase block mb-2 font-medium"
             >
               Environment
             </label>
@@ -104,12 +99,11 @@ export function Deployment() {
                 <button
                   key={env}
                   onClick={() => setEnvironment(env)}
-                  className={`flex-1 px-4 py-3 rounded-lg font-['Inter',sans-serif] text-[14px] transition-all ${
+                  className={`flex-1 px-4 py-3 rounded-lg font-['Inter',sans-serif] text-[14px] transition-all font-medium ${
                     environment === env
-                      ? "bg-[#3b82f6]/20 text-[#3b82f6] border border-[#3b82f6]/40"
-                      : "bg-[#111827] text-[#9ca3af] border border-[#374151] hover:border-[#4b5563]"
+                      ? "bg-[var(--color-intake-accent)]/20 text-[var(--color-intake-accent)] border border-[var(--color-intake-accent)]/40"
+                      : "bg-[var(--color-intake-panel)] text-[var(--color-intake-text-muted)] border border-[var(--color-intake-border)] hover:border-[var(--color-intake-border-hover)]"
                   }`}
-                  style={{ fontWeight: 500 }}
                 >
                   <div className="flex items-center justify-center gap-2">
                     {env === "staging" ? <Clock size={16} /> : <Globe size={16} />}
@@ -124,27 +118,28 @@ export function Deployment() {
           <div>
             <div className="flex items-center justify-between mb-2">
               <label
-                className="font-['JetBrains_Mono',monospace] text-[#9ca3af] text-[12px] tracking-[0.6px] uppercase"
-                style={{ fontWeight: 500 }}
+                htmlFor="rollout-percentage"
+                className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-muted)] text-[12px] tracking-[0.6px] uppercase font-medium"
               >
                 Gradual Rollout
               </label>
-              <span className="font-['JetBrains_Mono',monospace] text-[#3b82f6] text-[14px]" style={{ fontWeight: 600 }}>
+              <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-accent)] text-[14px] font-semibold">
                 {rolloutPercentage}%
               </span>
             </div>
             <input
+              id="rollout-percentage"
               type="range"
               min="0"
               max="100"
               step="5"
               value={rolloutPercentage}
               onChange={(e) => setRolloutPercentage(Number(e.target.value))}
-              className="w-full accent-[#3b82f6] h-2 bg-[#374151] rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-[#3b82f6] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-lg"
+              className="w-full accent-[var(--color-intake-accent)] h-2 bg-[var(--color-intake-border)] rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-[var(--color-intake-accent)] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-lg"
             />
             <div className="flex justify-between mt-1">
-              <span className="font-['Inter',sans-serif] text-[#6b7280] text-[11px]" style={{ fontWeight: 400 }}>0%</span>
-              <span className="font-['Inter',sans-serif] text-[#6b7280] text-[11px]" style={{ fontWeight: 400 }}>100%</span>
+              <span className="font-['Inter',sans-serif] text-[var(--color-intake-text-dim)] text-[11px]">0%</span>
+              <span className="font-['Inter',sans-serif] text-[var(--color-intake-text-dim)] text-[11px]">100%</span>
             </div>
           </div>
 
@@ -152,8 +147,8 @@ export function Deployment() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <BarChart3 size={14} className="text-[#6b7280]" />
-                <span className="font-['Inter',sans-serif] text-[#d1d5db] text-[14px]" style={{ fontWeight: 400 }}>
+                <BarChart3 size={14} className="text-[var(--color-intake-text-dim)]" />
+                <span className="font-['Inter',sans-serif] text-[var(--color-intake-text-secondary)] text-[14px]">
                   Enable real-time monitoring
                 </span>
               </div>
@@ -165,8 +160,8 @@ export function Deployment() {
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Users size={14} className="text-[#6b7280]" />
-                <span className="font-['Inter',sans-serif] text-[#d1d5db] text-[14px]" style={{ fontWeight: 400 }}>
+                <Users size={14} className="text-[var(--color-intake-text-dim)]" />
+                <span className="font-['Inter',sans-serif] text-[var(--color-intake-text-secondary)] text-[14px]">
                   Auto-rollback on error spike
                 </span>
               </div>
@@ -181,17 +176,17 @@ export function Deployment() {
       </div>
 
       {/* Acknowledgement */}
-      <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
+      <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-6">
         <label className="flex items-start gap-3 cursor-pointer">
           <div
             onClick={() => setAcknowledged(!acknowledged)}
             className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
-              acknowledged ? "bg-[#3b82f6] border-[#3b82f6]" : "border-[#4b5563]"
+              acknowledged ? "bg-[var(--color-intake-accent)] border-[var(--color-intake-accent)]" : "border-[var(--color-intake-border-hover)]"
             }`}
           >
             {acknowledged && <Check size={12} className="text-white" />}
           </div>
-          <p className="font-['Inter',sans-serif] text-[#d1d5db] text-[14px]" style={{ fontWeight: 400, lineHeight: "20px" }}>
+          <p className="font-['Inter',sans-serif] text-[var(--color-intake-text-secondary)] text-[14px]">
             I acknowledge that this AI agent will interact with customers in {environment === "production" ? "production" : "staging"} environment. I have reviewed the configuration, tested the responses, and confirmed that the agent behaves as expected.
           </p>
         </label>

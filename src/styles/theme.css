@@ -132,8 +132,13 @@
   --color-intake-accent: #3b82f6;
   --color-intake-accent-hover: #2563eb;
   --color-intake-success: #10b981;
+  --color-intake-success-hover: #059669;
+  --color-intake-success-light: #34d399;
   --color-intake-warning: #f59e0b;
   --color-intake-error: #ef4444;
+  --color-intake-content: #131720;
+  --color-intake-active: #232732;
+  --color-intake-accent-bg: #1e3a5f;
 }
 
 @layer base {

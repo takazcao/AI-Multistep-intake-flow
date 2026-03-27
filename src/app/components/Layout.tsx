@@ -27,8 +27,8 @@ export function Layout() {
   const StepComponent = STEP_COMPONENTS[currentStepIndex];
 
   return (
-    <div className="w-full h-screen flex items-center justify-center bg-[#2d3544] p-6">
-      <div className="w-full max-w-[1440px] h-full max-h-[920px] bg-[#111827] rounded-2xl overflow-hidden flex flex-col shadow-2xl border border-[#4b5563]/30">
+    <div className="w-full h-screen flex items-center justify-center bg-[var(--color-intake-bg)] p-6">
+      <div className="w-full max-w-[1440px] h-full max-h-[920px] bg-[var(--color-intake-panel)] rounded-2xl overflow-hidden flex flex-col shadow-2xl border border-[var(--color-intake-border-hover)]/30">
         {/* Top Stepper */}
         <TopStepper />
 
@@ -38,7 +38,7 @@ export function Layout() {
           <Sidebar />
 
           {/* Center Content */}
-          <div className="flex-1 overflow-y-auto bg-[#131720]">
+          <div className="flex-1 overflow-y-auto bg-[var(--color-intake-content)]">
             <div className="p-8 max-w-[700px]">
               <StepComponent />
             </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X, Send, Plus, RefreshCw, Sparkles, LayoutGrid } from "lucide-react";
 import { useStepContext, SUB_STEPS } from "./StepContext";
 
@@ -6,6 +6,11 @@ export function AIPreview() {
   const { currentStepIndex, goToNext, chatMessages, addChatMessage } = useStepContext();
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatMessages, isTyping]);
 
   const nextStep = currentStepIndex < SUB_STEPS.length - 1 ? SUB_STEPS[currentStepIndex + 1] : null;
 
@@ -34,19 +39,18 @@ export function AIPreview() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#1a1d26] border-l border-[#374151] shrink-0" style={{ width: 300 }}>
+    <div className="flex flex-col h-full bg-[var(--color-intake-sidebar)] border-l border-[var(--color-intake-border)] shrink-0" style={{ width: 300 }}>
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-[#374151]">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--color-intake-border)]">
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#10b981] animate-pulse" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[var(--color-intake-success)] animate-pulse" />
           <span
-            className="font-['Inter',sans-serif] text-white text-[14px]"
-            style={{ fontWeight: 500 }}
+            className="font-['Inter',sans-serif] text-white text-[14px] font-medium"
           >
             Support Specialist (Preview)
           </span>
         </div>
-        <button className="text-[#9ca3af] hover:text-white transition-colors">
+        <button aria-label="Close preview" className="text-[var(--color-intake-text-muted)] hover:text-white transition-colors">
           <X size={16} />
         </button>
       </div>
@@ -57,26 +61,26 @@ export function AIPreview() {
           <div key={msg.id}>
             {msg.time && msg.role === "user" && (
               <div className="text-center mb-2">
-                <span className="font-['Inter',sans-serif] text-[#6b7280] text-[11px]" style={{ fontWeight: 500 }}>
+                <span className="font-['Inter',sans-serif] text-[var(--color-intake-text-dim)] text-[11px] font-medium">
                   {msg.time}
                 </span>
               </div>
             )}
             {msg.role === "user" ? (
               <div className="flex justify-end">
-                <div className="bg-[#3b82f6] text-white px-4 py-2.5 rounded-2xl rounded-br-sm max-w-[220px]">
-                  <p className="font-['Inter',sans-serif] text-[13px]" style={{ fontWeight: 400, lineHeight: "18px" }}>
+                <div className="bg-[var(--color-intake-accent)] text-white px-4 py-2.5 rounded-2xl rounded-br-sm max-w-[220px]">
+                  <p className="font-['Inter',sans-serif] text-[13px] leading-normal">
                     {msg.text}
                   </p>
                 </div>
               </div>
             ) : (
               <div className="flex items-start gap-2">
-                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#8b5cf6] flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="text-white text-[10px]" style={{ fontWeight: 700 }}>AI</span>
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[var(--color-intake-accent)] to-[var(--color-intake-accent)] flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-white text-[10px] font-bold">AI</span>
                 </div>
-                <div className="bg-[#1f2937] text-[#d1d5db] px-4 py-2.5 rounded-2xl rounded-bl-sm max-w-[220px]">
-                  <p className="font-['Inter',sans-serif] text-[13px]" style={{ fontWeight: 400, lineHeight: "18px" }}>
+                <div className="bg-[var(--color-intake-card)] text-[var(--color-intake-text-secondary)] px-4 py-2.5 rounded-2xl rounded-bl-sm max-w-[220px]">
+                  <p className="font-['Inter',sans-serif] text-[13px] leading-normal">
                     {msg.text}
                   </p>
                 </div>
@@ -86,33 +90,34 @@ export function AIPreview() {
         ))}
         {isTyping && (
           <div className="flex items-start gap-2">
-            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#8b5cf6] flex items-center justify-center shrink-0">
-              <span className="text-white text-[10px]" style={{ fontWeight: 700 }}>AI</span>
+            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[var(--color-intake-accent)] to-[var(--color-intake-accent)] flex items-center justify-center shrink-0">
+              <span className="text-white text-[10px] font-bold">AI</span>
             </div>
-            <div className="bg-[#1f2937] px-4 py-3 rounded-2xl rounded-bl-sm">
+            <div className="bg-[var(--color-intake-card)] px-4 py-3 rounded-2xl rounded-bl-sm">
               <div className="flex gap-1">
-                <div className="w-2 h-2 bg-[#6b7280] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                <div className="w-2 h-2 bg-[#6b7280] rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                <div className="w-2 h-2 bg-[#6b7280] rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                <div className="w-2 h-2 bg-[var(--color-intake-text-dim)] rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                <div className="w-2 h-2 bg-[var(--color-intake-text-dim)] rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                <div className="w-2 h-2 bg-[var(--color-intake-text-dim)] rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
               </div>
             </div>
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Quick Actions */}
       <div className="px-4 pb-2 flex items-center gap-3">
-        <button className="flex items-center gap-1.5 text-[#9ca3af] hover:text-white transition-colors">
+        <button className="flex items-center gap-1.5 text-[var(--color-intake-text-muted)] hover:text-white transition-colors">
           <Sparkles size={13} />
-          <span className="font-['Inter',sans-serif] text-[12px]" style={{ fontWeight: 500 }}>
+          <span className="font-['Inter',sans-serif] text-[12px] font-medium">
             How do I upgrade my plan
           </span>
         </button>
       </div>
       <div className="px-4 pb-2 flex items-center gap-3">
-        <button className="flex items-center gap-1.5 text-[#9ca3af] hover:text-white transition-colors">
+        <button className="flex items-center gap-1.5 text-[var(--color-intake-text-muted)] hover:text-white transition-colors">
           <LayoutGrid size={13} />
-          <span className="font-['Inter',sans-serif] text-[12px]" style={{ fontWeight: 500 }}>
+          <span className="font-['Inter',sans-serif] text-[12px] font-medium">
             Summarize
           </span>
         </button>
@@ -120,8 +125,8 @@ export function AIPreview() {
 
       {/* Input */}
       <div className="px-4 pb-3">
-        <div className="bg-[#1f2937] border border-[#374151] rounded-xl flex items-center px-3 py-2">
-          <button className="text-[#6b7280] hover:text-white transition-colors mr-2">
+        <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl flex items-center px-3 py-2">
+          <button aria-label="Attach file" className="text-[var(--color-intake-text-dim)] hover:text-white transition-colors mr-2">
             <Plus size={16} />
           </button>
           <input
@@ -130,12 +135,13 @@ export function AIPreview() {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
             placeholder='Try: "Typing your text to this box"'
-            className="flex-1 bg-transparent text-[#d1d5db] text-[13px] font-['Inter',sans-serif] outline-none placeholder:text-[#4b5563]"
-            style={{ fontWeight: 400 }}
+            className="flex-1 bg-transparent text-[var(--color-intake-text-secondary)] text-[13px] font-['Inter',sans-serif] outline-none placeholder:text-[var(--color-intake-border-hover)]"
           />
           <button
             onClick={handleSend}
-            className="text-[#3b82f6] hover:text-[#60a5fa] transition-colors ml-2"
+            disabled={isTyping}
+            aria-label="Send message"
+            className="text-[var(--color-intake-accent)] hover:text-[var(--color-intake-accent)] transition-colors ml-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Send size={16} />
           </button>
@@ -143,29 +149,26 @@ export function AIPreview() {
       </div>
 
       {/* Next Step */}
-      <div className="border-t border-[#374151] px-5 py-4">
+      <div className="border-t border-[var(--color-intake-border)] px-5 py-4">
         {nextStep ? (
           <button
             onClick={goToNext}
             className="flex items-center justify-between w-full group"
           >
             <span
-              className="font-['JetBrains_Mono',monospace] text-[#9ca3af] group-hover:text-white text-[13px] transition-colors"
-              style={{ fontWeight: 500 }}
+              className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-muted)] group-hover:text-white text-[13px] transition-colors font-medium"
             >
               Next &gt;
             </span>
             <span
-              className="font-['JetBrains_Mono',monospace] text-white text-[12px] tracking-[0.6px] uppercase"
-              style={{ fontWeight: 500 }}
+              className="font-['JetBrains_Mono',monospace] text-white text-[12px] tracking-[0.6px] uppercase font-medium"
             >
               {nextStep.label}
             </span>
           </button>
         ) : (
           <span
-            className="font-['JetBrains_Mono',monospace] text-[#10b981] text-[12px] tracking-[0.6px] uppercase block text-center"
-            style={{ fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-success)] text-[12px] tracking-[0.6px] uppercase block text-center font-medium"
           >
             Setup Complete
           </span>

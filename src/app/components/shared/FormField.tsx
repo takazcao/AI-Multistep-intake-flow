@@ -11,8 +11,7 @@ export function FormField({ id, label, children }: FormFieldProps) {
     <div>
       <label
         htmlFor={id}
-        className="font-['JetBrains_Mono',monospace] text-intake-text-muted text-[12px] tracking-[0.6px] uppercase block mb-2"
-        style={{ fontWeight: 500 }}
+        className="font-['JetBrains_Mono',monospace] text-intake-text-muted text-[12px] tracking-[0.6px] uppercase block mb-2 font-medium"
       >
         {label}
       </label>

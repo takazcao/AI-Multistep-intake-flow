@@ -10,8 +10,7 @@ export function SectionCard({ title, children }: SectionCardProps) {
     <div className="bg-intake-card border border-intake-border rounded-xl p-6">
       {title && (
         <h4
-          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4"
-          style={{ fontWeight: 500 }}
+          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4 font-medium"
         >
           {title}
         </h4>

@@ -21,8 +21,8 @@ export function GeneralSettings() {
       <div className="flex items-center justify-between">
         <div>
           <h3
-            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase"
-            style={{ fontSize: 18, fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase font-medium"
+            style={{ fontSize: 18 }}
           >
             General Settings
           </h3>
@@ -31,10 +31,10 @@ export function GeneralSettings() {
           </p>
         </div>
         <div className="flex gap-2">
-          <button className="px-4 py-2 border border-intake-border text-intake-text-muted rounded-lg font-['Inter',sans-serif] text-[13px] hover:text-white hover:border-intake-border-hover transition-colors" style={{ fontWeight: 500 }}>
+          <button className="px-4 py-2 border border-intake-border text-intake-text-muted rounded-lg font-['Inter',sans-serif] text-[13px] hover:text-white hover:border-intake-border-hover transition-colors font-medium">
             Reset
           </button>
-          <button className="px-4 py-2 bg-intake-accent text-white rounded-lg font-['Inter',sans-serif] text-[13px] hover:bg-intake-accent-hover transition-colors" style={{ fontWeight: 500 }}>
+          <button className="px-4 py-2 bg-intake-accent text-white rounded-lg font-['Inter',sans-serif] text-[13px] hover:bg-intake-accent-hover transition-colors font-medium">
             Save Settings
           </button>
         </div>
@@ -50,10 +50,9 @@ export function GeneralSettings() {
               value={agentName}
               onChange={(e) => setAgentName(e.target.value)}
               className="w-full bg-intake-panel border border-intake-border rounded-lg px-4 py-2.5 text-white font-['Inter',sans-serif] text-[14px] outline-none focus:border-intake-accent transition-colors"
-              style={{ fontWeight: 400 }}
             />
           </FormField>
-          
+
           <FormField id="agent-role" label="Agent Role">
             <div className="relative">
               <select
@@ -61,7 +60,6 @@ export function GeneralSettings() {
                 value={agentRole}
                 onChange={(e) => setAgentRole(e.target.value)}
                 className="w-full bg-intake-panel border border-intake-border rounded-lg px-4 py-2.5 text-white font-['Inter',sans-serif] text-[14px] outline-none appearance-none focus:border-intake-accent transition-colors"
-                style={{ fontWeight: 400 }}
               >
                 <option value="customer-support">Customer Support</option>
                 <option value="sales">Sales Assistant</option>
@@ -81,7 +79,6 @@ export function GeneralSettings() {
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
                 className="w-full bg-intake-panel border border-intake-border rounded-lg px-4 py-2.5 text-white font-['Inter',sans-serif] text-[14px] outline-none appearance-none focus:border-intake-accent transition-colors"
-                style={{ fontWeight: 400 }}
               >
                 <option value="english">English</option>
                 <option value="spanish">Spanish</option>
@@ -91,7 +88,7 @@ export function GeneralSettings() {
               <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-intake-text-dim pointer-events-none" />
             </div>
           </FormField>
-          
+
           <FormField id="timezone" label="Timezone">
             <div className="relative">
               <select
@@ -99,7 +96,6 @@ export function GeneralSettings() {
                 value={timezone}
                 onChange={(e) => setTimezone(e.target.value)}
                 className="w-full bg-intake-panel border border-intake-border rounded-lg px-4 py-2.5 text-white font-['Inter',sans-serif] text-[14px] outline-none appearance-none focus:border-intake-accent transition-colors"
-                style={{ fontWeight: 400 }}
               >
                 <option value="utc-8">PST (UTC-8)</option>
                 <option value="utc-5">EST (UTC-5)</option>
@@ -121,7 +117,6 @@ export function GeneralSettings() {
             onChange={(e) => setGreeting(e.target.value)}
             rows={3}
             className="w-full bg-intake-panel border border-intake-border rounded-lg px-4 py-3 text-white font-['Inter',sans-serif] text-[14px] outline-none focus:border-intake-accent transition-colors resize-none"
-            style={{ fontWeight: 400, lineHeight: "20px" }}
           />
         </FormField>
       </SectionCard>
@@ -131,7 +126,7 @@ export function GeneralSettings() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <label htmlFor="enable-fallback" className="font-['Inter',sans-serif] text-intake-text-secondary text-[14px] cursor-pointer" style={{ fontWeight: 400 }}>
+              <label htmlFor="enable-fallback" className="font-['Inter',sans-serif] text-intake-text-secondary text-[14px] cursor-pointer">
                 Enable human handoff fallback
               </label>
               <Info size={14} className="text-intake-text-dim" />
@@ -144,7 +139,7 @@ export function GeneralSettings() {
           </div>
 
           <div className="flex items-center justify-between">
-            <label htmlFor="max-turns" className="font-['Inter',sans-serif] text-intake-text-secondary text-[14px]" style={{ fontWeight: 400 }}>
+            <label htmlFor="max-turns" className="font-['Inter',sans-serif] text-intake-text-secondary text-[14px]">
               Max conversation turns
             </label>
             <input
@@ -153,7 +148,6 @@ export function GeneralSettings() {
               value={maxConversationLength}
               onChange={(e) => setMaxConversationLength(e.target.value)}
               className="w-20 bg-intake-panel border border-intake-border rounded-lg px-3 py-1.5 text-white font-['Inter',sans-serif] text-[14px] outline-none text-center focus:border-intake-accent transition-colors"
-              style={{ fontWeight: 400 }}
             />
           </div>
         </div>

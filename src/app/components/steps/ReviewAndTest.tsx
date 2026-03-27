@@ -57,12 +57,10 @@ export function ReviewAndTest() {
 
   const runTests = () => {
     setIsRunning(true);
-    // Simulate running the pending test
+    setTestCases((prev) => prev.map((tc) => ({ ...tc, status: "pending" as const, confidence: undefined })));
     setTimeout(() => {
       setTestCases((prev) =>
-        prev.map((tc) =>
-          tc.status === "pending" ? { ...tc, status: "passed" as const, confidence: 88 } : tc
-        )
+        prev.map((tc) => ({ ...tc, status: "passed" as const, confidence: 88 }))
       );
       setIsRunning(false);
     }, 2000);
@@ -78,25 +76,24 @@ export function ReviewAndTest() {
       <div className="flex items-center justify-between">
         <div>
           <h3
-            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase"
-            style={{ fontSize: 18, fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase font-medium"
+            style={{ fontSize: 18 }}
           >
             Review & Test
           </h3>
-          <p className="font-['Inter',sans-serif] text-[#9ca3af] mt-1" style={{ fontSize: 14, fontWeight: 400 }}>
+          <p className="font-['Inter',sans-serif] text-[var(--color-intake-text-muted)] mt-1" style={{ fontSize: 14, fontWeight: 400 }}>
             Validate your AI agent configuration with test scenarios.
           </p>
         </div>
         <div className="flex gap-2">
-          <button className="flex items-center gap-2 px-4 py-2 border border-[#374151] text-[#9ca3af] rounded-lg font-['Inter',sans-serif] text-[13px] hover:text-white hover:border-[#4b5563] transition-colors" style={{ fontWeight: 500 }}>
+          <button className="flex items-center gap-2 px-4 py-2 border border-[var(--color-intake-border)] text-[var(--color-intake-text-muted)] rounded-lg font-['Inter',sans-serif] text-[13px] hover:text-white hover:border-[var(--color-intake-border-hover)] transition-colors font-medium">
             <RotateCcw size={14} />
             Reset All
           </button>
           <button
             onClick={runTests}
             disabled={isRunning}
-            className="flex items-center gap-2 px-4 py-2 bg-[#3b82f6] text-white rounded-lg font-['Inter',sans-serif] text-[13px] hover:bg-[#2563eb] transition-colors disabled:opacity-50"
-            style={{ fontWeight: 500 }}
+            className="flex items-center gap-2 px-4 py-2 bg-[var(--color-intake-accent)] text-white rounded-lg font-['Inter',sans-serif] text-[13px] hover:bg-[var(--color-intake-accent-hover)] transition-colors disabled:opacity-50 font-medium"
           >
             <Play size={14} />
             {isRunning ? "Running..." : "Run All Tests"}
@@ -106,46 +103,45 @@ export function ReviewAndTest() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-3 gap-4">
-        <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-5">
+        <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-5">
           <div className="flex items-center gap-3 mb-2">
-            <CheckCircle2 size={20} className="text-[#10b981]" />
-            <span className="font-['JetBrains_Mono',monospace] text-[#10b981] text-[24px]" style={{ fontWeight: 600 }}>
+            <CheckCircle2 size={20} className="text-[var(--color-intake-success)]" />
+            <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-success)] text-[24px] font-semibold">
               {passedCount}
             </span>
           </div>
-          <p className="font-['JetBrains_Mono',monospace] text-[#9ca3af] text-[12px] tracking-[0.6px] uppercase" style={{ fontWeight: 500 }}>
+          <p className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-muted)] text-[12px] tracking-[0.6px] uppercase font-medium">
             Tests Passed
           </p>
         </div>
-        <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-5">
+        <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-5">
           <div className="flex items-center gap-3 mb-2">
-            <XCircle size={20} className="text-[#ef4444]" />
-            <span className="font-['JetBrains_Mono',monospace] text-[#ef4444] text-[24px]" style={{ fontWeight: 600 }}>
+            <XCircle size={20} className="text-[var(--color-intake-error)]" />
+            <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-error)] text-[24px] font-semibold">
               {failedCount}
             </span>
           </div>
-          <p className="font-['JetBrains_Mono',monospace] text-[#9ca3af] text-[12px] tracking-[0.6px] uppercase" style={{ fontWeight: 500 }}>
+          <p className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-muted)] text-[12px] tracking-[0.6px] uppercase font-medium">
             Tests Failed
           </p>
         </div>
-        <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-5">
+        <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-5">
           <div className="flex items-center gap-3 mb-2">
-            <AlertTriangle size={20} className="text-[#f59e0b]" />
-            <span className="font-['JetBrains_Mono',monospace] text-[#f59e0b] text-[24px]" style={{ fontWeight: 600 }}>
+            <AlertTriangle size={20} className="text-[var(--color-intake-warning)]" />
+            <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-warning)] text-[24px] font-semibold">
               {pendingCount}
             </span>
           </div>
-          <p className="font-['JetBrains_Mono',monospace] text-[#9ca3af] text-[12px] tracking-[0.6px] uppercase" style={{ fontWeight: 500 }}>
+          <p className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-muted)] text-[12px] tracking-[0.6px] uppercase font-medium">
             Pending
           </p>
         </div>
       </div>
 
       {/* Test Cases */}
-      <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
+      <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-6">
         <h4
-          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4"
-          style={{ fontWeight: 500 }}
+          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4 font-medium"
         >
           Test Scenarios
         </h4>
@@ -154,56 +150,55 @@ export function ReviewAndTest() {
           {testCases.map((tc) => (
             <div
               key={tc.id}
-              className={`bg-[#111827] border rounded-lg px-5 py-4 ${
+              className={`bg-[var(--color-intake-panel)] border rounded-lg px-5 py-4 ${
                 tc.status === "passed"
-                  ? "border-[#10b981]/30"
+                  ? "border-[var(--color-intake-success)]/30"
                   : tc.status === "failed"
-                  ? "border-[#ef4444]/30"
-                  : "border-[#374151]"
+                  ? "border-[var(--color-intake-error)]/30"
+                  : "border-[var(--color-intake-border)]"
               }`}
             >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-3">
                   {tc.status === "passed" ? (
-                    <div className="w-6 h-6 rounded-full bg-[#10b981]/20 flex items-center justify-center">
-                      <Check size={12} className="text-[#10b981]" />
+                    <div className="w-6 h-6 rounded-full bg-[var(--color-intake-success)]/20 flex items-center justify-center">
+                      <Check size={12} className="text-[var(--color-intake-success)]" />
                     </div>
                   ) : tc.status === "failed" ? (
-                    <div className="w-6 h-6 rounded-full bg-[#ef4444]/20 flex items-center justify-center">
-                      <X size={12} className="text-[#ef4444]" />
+                    <div className="w-6 h-6 rounded-full bg-[var(--color-intake-error)]/20 flex items-center justify-center">
+                      <X size={12} className="text-[var(--color-intake-error)]" />
                     </div>
                   ) : (
-                    <div className="w-6 h-6 rounded-full bg-[#f59e0b]/20 flex items-center justify-center">
-                      <AlertTriangle size={10} className="text-[#f59e0b]" />
+                    <div className="w-6 h-6 rounded-full bg-[var(--color-intake-warning)]/20 flex items-center justify-center">
+                      <AlertTriangle size={10} className="text-[var(--color-intake-warning)]" />
                     </div>
                   )}
-                  <span className="font-['Inter',sans-serif] text-white text-[14px]" style={{ fontWeight: 500 }}>
+                  <span className="font-['Inter',sans-serif] text-white text-[14px] font-medium">
                     {tc.name}
                   </span>
                 </div>
                 {tc.confidence !== undefined && (
                   <span
-                    className={`font-['JetBrains_Mono',monospace] text-[12px] px-2 py-0.5 rounded ${
+                    className={`font-['JetBrains_Mono',monospace] text-[12px] px-2 py-0.5 rounded font-medium ${
                       tc.confidence >= 80
-                        ? "bg-[#10b981]/20 text-[#10b981]"
+                        ? "bg-[var(--color-intake-success)]/20 text-[var(--color-intake-success)]"
                         : tc.confidence >= 50
-                        ? "bg-[#f59e0b]/20 text-[#f59e0b]"
-                        : "bg-[#ef4444]/20 text-[#ef4444]"
+                        ? "bg-[var(--color-intake-warning)]/20 text-[var(--color-intake-warning)]"
+                        : "bg-[var(--color-intake-error)]/20 text-[var(--color-intake-error)]"
                     }`}
-                    style={{ fontWeight: 500 }}
                   >
                     {tc.confidence}% confidence
                   </span>
                 )}
               </div>
-              <p className="font-['Inter',sans-serif] text-[#9ca3af] text-[13px] ml-9" style={{ fontWeight: 400 }}>
+              <p className="font-['Inter',sans-serif] text-[var(--color-intake-text-muted)] text-[13px] ml-9">
                 "{tc.input}"
               </p>
               <div className="flex items-center gap-2 ml-9 mt-1.5">
-                <span className="font-['Inter',sans-serif] text-[#6b7280] text-[12px]" style={{ fontWeight: 400 }}>
+                <span className="font-['Inter',sans-serif] text-[var(--color-intake-text-dim)] text-[12px]">
                   Expected:
                 </span>
-                <span className="font-['Inter',sans-serif] text-[#d1d5db] text-[12px]" style={{ fontWeight: 500 }}>
+                <span className="font-['Inter',sans-serif] text-[var(--color-intake-text-secondary)] text-[12px] font-medium">
                   {tc.expectedCategory}
                 </span>
               </div>
@@ -213,10 +208,9 @@ export function ReviewAndTest() {
       </div>
 
       {/* Configuration Summary */}
-      <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
+      <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-6">
         <h4
-          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4"
-          style={{ fontWeight: 500 }}
+          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4 font-medium"
         >
           Configuration Summary
         </h4>
@@ -229,11 +223,11 @@ export function ReviewAndTest() {
             { label: "Integrations", value: "Slack, Zendesk" },
             { label: "Autonomy Level", value: "Complex Tasks" },
           ].map((item) => (
-            <div key={item.label} className="flex items-center justify-between bg-[#111827] border border-[#374151] rounded-lg px-4 py-3">
-              <span className="font-['Inter',sans-serif] text-[#6b7280] text-[13px]" style={{ fontWeight: 400 }}>
+            <div key={item.label} className="flex items-center justify-between bg-[var(--color-intake-panel)] border border-[var(--color-intake-border)] rounded-lg px-4 py-3">
+              <span className="font-['Inter',sans-serif] text-[var(--color-intake-text-dim)] text-[13px]">
                 {item.label}
               </span>
-              <span className="font-['Inter',sans-serif] text-white text-[13px]" style={{ fontWeight: 500 }}>
+              <span className="font-['Inter',sans-serif] text-white text-[13px] font-medium">
                 {item.value}
               </span>
             </div>

@@ -36,25 +36,24 @@ export function IntegrationSettings() {
       <div className="flex items-center justify-between">
         <div>
           <h3
-            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase"
-            style={{ fontSize: 18, fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase font-medium"
+            style={{ fontSize: 18 }}
           >
             Integration Settings
           </h3>
-          <p className="font-['Inter',sans-serif] text-[#9ca3af] mt-1" style={{ fontSize: 14, fontWeight: 400 }}>
+          <p className="font-['Inter',sans-serif] text-[var(--color-intake-text-muted)] mt-1" style={{ fontSize: 14, fontWeight: 400 }}>
             Connect external services and configure communication channels.
           </p>
         </div>
-        <button className="px-4 py-2 bg-[#3b82f6] text-white rounded-lg font-['Inter',sans-serif] text-[13px] hover:bg-[#2563eb] transition-colors" style={{ fontWeight: 500 }}>
+        <button className="px-4 py-2 bg-[var(--color-intake-accent)] text-white rounded-lg font-['Inter',sans-serif] text-[13px] hover:bg-[var(--color-intake-accent-hover)] transition-colors font-medium">
           Save Configuration
         </button>
       </div>
 
       {/* Channel Integrations */}
-      <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
+      <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-6">
         <h4
-          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4"
-          style={{ fontWeight: 500 }}
+          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4 font-medium"
         >
           Channel Integrations
         </h4>
@@ -63,7 +62,7 @@ export function IntegrationSettings() {
           {integrations.map((integration) => (
             <div
               key={integration.id}
-              className="flex items-center justify-between bg-[#111827] border border-[#374151] rounded-lg px-5 py-4 hover:border-[#4b5563] transition-colors"
+              className="flex items-center justify-between bg-[var(--color-intake-panel)] border border-[var(--color-intake-border)] rounded-lg px-5 py-4 hover:border-[var(--color-intake-border-hover)] transition-colors"
             >
               <div className="flex items-center gap-4">
                 <div
@@ -73,10 +72,10 @@ export function IntegrationSettings() {
                   {integration.icon}
                 </div>
                 <div>
-                  <p className="font-['Inter',sans-serif] text-white text-[14px]" style={{ fontWeight: 500 }}>
+                  <p className="font-['Inter',sans-serif] text-white text-[14px] font-medium">
                     {integration.name}
                   </p>
-                  <p className="font-['Inter',sans-serif] text-[#6b7280] text-[12px]" style={{ fontWeight: 400 }}>
+                  <p className="font-['Inter',sans-serif] text-[var(--color-intake-text-dim)] text-[12px]">
                     {integration.description}
                   </p>
                 </div>
@@ -84,20 +83,19 @@ export function IntegrationSettings() {
               <div className="flex items-center gap-3">
                 {integration.connected && (
                   <span className="flex items-center gap-1">
-                    <Check size={12} className="text-[#10b981]" />
-                    <span className="font-['Inter',sans-serif] text-[#10b981] text-[12px]" style={{ fontWeight: 500 }}>
+                    <Check size={12} className="text-[var(--color-intake-success)]" />
+                    <span className="font-['Inter',sans-serif] text-[var(--color-intake-success)] text-[12px] font-medium">
                       Connected
                     </span>
                   </span>
                 )}
                 <button
                   onClick={() => toggleConnection(integration.id)}
-                  className={`px-3 py-1.5 rounded-lg font-['Inter',sans-serif] text-[12px] transition-colors ${
+                  className={`px-3 py-1.5 rounded-lg font-['Inter',sans-serif] text-[12px] transition-colors font-medium ${
                     integration.connected
-                      ? "bg-[#1f2937] border border-[#374151] text-[#9ca3af] hover:text-white"
-                      : "bg-[#3b82f6] text-white hover:bg-[#2563eb]"
+                      ? "bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] text-[var(--color-intake-text-muted)] hover:text-white"
+                      : "bg-[var(--color-intake-accent)] text-white hover:bg-[var(--color-intake-accent-hover)]"
                   }`}
-                  style={{ fontWeight: 500 }}
                 >
                   {integration.connected ? "Disconnect" : "Connect"}
                 </button>
@@ -108,12 +106,11 @@ export function IntegrationSettings() {
       </div>
 
       {/* Webhook Configuration */}
-      <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
+      <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-6">
         <div className="flex items-center gap-2 mb-4">
-          <Zap size={16} className="text-[#f59e0b]" />
+          <Zap size={16} className="text-[var(--color-intake-warning)]" />
           <h4
-            className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase"
-            style={{ fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase font-medium"
           >
             Webhook Configuration
           </h4>
@@ -122,20 +119,20 @@ export function IntegrationSettings() {
         <div className="space-y-4">
           <div>
             <label
-              className="font-['JetBrains_Mono',monospace] text-[#9ca3af] text-[12px] tracking-[0.6px] uppercase block mb-2"
-              style={{ fontWeight: 500 }}
+              htmlFor="webhook-url"
+              className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-muted)] text-[12px] tracking-[0.6px] uppercase block mb-2 font-medium"
             >
               Webhook URL
             </label>
             <div className="flex gap-2">
               <input
+                id="webhook-url"
                 type="text"
                 value={webhookUrl}
                 onChange={(e) => setWebhookUrl(e.target.value)}
-                className="flex-1 bg-[#111827] border border-[#374151] rounded-lg px-4 py-2.5 text-white font-['Inter',sans-serif] text-[14px] outline-none focus:border-[#3b82f6] transition-colors"
-                style={{ fontWeight: 400 }}
+                className="flex-1 bg-[var(--color-intake-panel)] border border-[var(--color-intake-border)] rounded-lg px-4 py-2.5 text-white font-['Inter',sans-serif] text-[14px] outline-none focus:border-[var(--color-intake-accent)] transition-colors"
               />
-              <button className="px-3 py-2 bg-[#111827] border border-[#374151] rounded-lg text-[#9ca3af] hover:text-white transition-colors">
+              <button aria-label="Open webhook URL" className="px-3 py-2 bg-[var(--color-intake-panel)] border border-[var(--color-intake-border)] rounded-lg text-[var(--color-intake-text-muted)] hover:text-white transition-colors">
                 <ExternalLink size={16} />
               </button>
             </div>
@@ -143,29 +140,28 @@ export function IntegrationSettings() {
 
           <div>
             <label
-              className="font-['JetBrains_Mono',monospace] text-[#9ca3af] text-[12px] tracking-[0.6px] uppercase block mb-2"
-              style={{ fontWeight: 500 }}
+              htmlFor="api-key"
+              className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-muted)] text-[12px] tracking-[0.6px] uppercase block mb-2 font-medium"
             >
               API Key
             </label>
             <input
+              id="api-key"
               type="password"
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
-              className="w-full bg-[#111827] border border-[#374151] rounded-lg px-4 py-2.5 text-white font-['Inter',sans-serif] text-[14px] outline-none focus:border-[#3b82f6] transition-colors"
-              style={{ fontWeight: 400 }}
+              className="w-full bg-[var(--color-intake-panel)] border border-[var(--color-intake-border)] rounded-lg px-4 py-2.5 text-white font-['Inter',sans-serif] text-[14px] outline-none focus:border-[var(--color-intake-accent)] transition-colors"
             />
           </div>
         </div>
       </div>
 
       {/* Error Handling */}
-      <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
+      <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-6">
         <div className="flex items-center gap-2 mb-4">
-          <AlertCircle size={16} className="text-[#ef4444]" />
+          <AlertCircle size={16} className="text-[var(--color-intake-error)]" />
           <h4
-            className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase"
-            style={{ fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase font-medium"
           >
             Error Handling
           </h4>
@@ -173,7 +169,7 @@ export function IntegrationSettings() {
 
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <span className="font-['Inter',sans-serif] text-[#d1d5db] text-[14px]" style={{ fontWeight: 400 }}>
+            <span className="font-['Inter',sans-serif] text-[var(--color-intake-text-secondary)] text-[14px]">
               Notify on integration errors
             </span>
             <Switch
@@ -183,7 +179,7 @@ export function IntegrationSettings() {
             />
           </div>
           <div className="flex items-center justify-between">
-            <span className="font-['Inter',sans-serif] text-[#d1d5db] text-[14px]" style={{ fontWeight: 400 }}>
+            <span className="font-['Inter',sans-serif] text-[var(--color-intake-text-secondary)] text-[14px]">
               Auto-retry failed messages
             </span>
             <Switch

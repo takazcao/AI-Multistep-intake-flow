@@ -39,8 +39,8 @@ export function KnowledgeSources() {
       <div className="flex items-center justify-between">
         <div>
           <h3
-            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase"
-            style={{ fontSize: 18, fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase font-medium"
+            style={{ fontSize: 18 }}
           >
             Knowledge Sources
           </h3>
@@ -48,7 +48,7 @@ export function KnowledgeSources() {
             Connect and manage the data sources that power your AI agent.
           </p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-intake-accent text-white rounded-lg font-['Inter',sans-serif] text-[13px] hover:bg-intake-accent-hover transition-colors" style={{ fontWeight: 500 }}>
+        <button className="flex items-center gap-2 px-4 py-2 bg-intake-accent text-white rounded-lg font-['Inter',sans-serif] text-[13px] hover:bg-intake-accent-hover transition-colors font-medium">
           <Plus size={14} />
           Add Source
         </button>
@@ -56,13 +56,13 @@ export function KnowledgeSources() {
 
       {/* Upload Area */}
       <div className="bg-intake-card border border-dashed border-intake-border-hover rounded-xl p-8 flex flex-col items-center justify-center text-center hover:border-intake-accent transition-colors cursor-pointer group">
-        <div className="w-12 h-12 rounded-full bg-intake-panel flex items-center justify-center mb-3 group-hover:bg-[#1e3a5f] transition-colors">
+        <div className="w-12 h-12 rounded-full bg-intake-panel flex items-center justify-center mb-3 group-hover:bg-[var(--color-intake-accent-bg)] transition-colors">
           <Upload size={20} className="text-intake-text-dim group-hover:text-intake-accent transition-colors" />
         </div>
-        <p className="font-['Inter',sans-serif] text-white text-[14px] mb-1" style={{ fontWeight: 500 }}>
+        <p className="font-['Inter',sans-serif] text-white text-[14px] mb-1 font-medium">
           Drop files here or click to upload
         </p>
-        <p className="font-['Inter',sans-serif] text-intake-text-dim text-[12px]" style={{ fontWeight: 400 }}>
+        <p className="font-['Inter',sans-serif] text-intake-text-dim text-[12px]">
           Supports PDF, DOCX, TXT, CSV, JSON (Max 50MB)
         </p>
       </div>
@@ -77,7 +77,6 @@ export function KnowledgeSources() {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search sources..."
             className="bg-intake-panel border border-intake-border rounded-lg px-3 py-1.5 text-intake-text-secondary font-['Inter',sans-serif] text-[13px] outline-none w-48 focus:border-intake-accent transition-colors relative z-10"
-            style={{ fontWeight: 400 }}
           />
         </div>
 
@@ -91,11 +90,11 @@ export function KnowledgeSources() {
               <div className="flex items-center gap-3">
                 {getIcon(source.type)}
                 <div>
-                  <p className="font-['Inter',sans-serif] text-white text-[14px]" style={{ fontWeight: 500 }}>
+                  <p className="font-['Inter',sans-serif] text-white text-[14px] font-medium">
                     {source.name}
                   </p>
                   {source.lastSync && (
-                    <p className="font-['Inter',sans-serif] text-intake-text-dim text-[12px]" style={{ fontWeight: 400 }}>
+                    <p className="font-['Inter',sans-serif] text-intake-text-dim text-[12px]">
                       Last synced: {source.lastSync}
                     </p>
                   )}
@@ -105,16 +104,16 @@ export function KnowledgeSources() {
                 {source.status === "connected" ? (
                   <span className="flex items-center gap-1">
                     <Check size={12} className="text-intake-success" />
-                    <span className="font-['Inter',sans-serif] text-intake-success text-[12px]" style={{ fontWeight: 500 }}>
+                    <span className="font-['Inter',sans-serif] text-intake-success text-[12px] font-medium">
                       Connected
                     </span>
                   </span>
                 ) : source.status === "pending" ? (
-                  <span className="font-['Inter',sans-serif] text-intake-warning text-[12px]" style={{ fontWeight: 500 }}>
+                  <span className="font-['Inter',sans-serif] text-intake-warning text-[12px] font-medium">
                     Pending
                   </span>
                 ) : (
-                  <span className="font-['Inter',sans-serif] text-intake-error text-[12px]" style={{ fontWeight: 500 }}>
+                  <span className="font-['Inter',sans-serif] text-intake-error text-[12px] font-medium">
                     Error
                   </span>
                 )}
@@ -136,19 +135,18 @@ export function KnowledgeSources() {
       {/* Sync Settings */}
       <SectionCard title="Sync Settings">
         <div className="flex items-center justify-between">
-          <span className="font-['Inter',sans-serif] text-intake-text-secondary text-[14px]" style={{ fontWeight: 400 }}>
+          <span className="font-['Inter',sans-serif] text-intake-text-secondary text-[14px]">
             Auto-sync frequency
           </span>
           <div className="flex gap-2">
             {["1h", "6h", "12h", "24h"].map((freq) => (
               <button
                 key={freq}
-                className={`px-3 py-1.5 rounded-lg font-['Inter',sans-serif] text-[12px] transition-colors ${
+                className={`px-3 py-1.5 rounded-lg font-['Inter',sans-serif] text-[12px] transition-colors font-medium ${
                   freq === "6h"
                     ? "bg-intake-accent text-white"
                     : "bg-intake-panel border border-intake-border text-intake-text-muted hover:text-white"
                 }`}
-                style={{ fontWeight: 500 }}
               >
                 {freq}
               </button>

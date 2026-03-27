@@ -45,9 +45,9 @@ export function ToneAndStyle() {
   };
 
   const getEmpathyColor = () => {
-    if (empathy < 33) return "#ef4444";
-    if (empathy < 66) return "#f59e0b";
-    return "#10b981";
+    if (empathy < 33) return "var(--color-intake-error)";
+    if (empathy < 66) return "var(--color-intake-warning)";
+    return "var(--color-intake-success)";
   };
 
   return (
@@ -56,33 +56,31 @@ export function ToneAndStyle() {
       <div className="flex items-center justify-between">
         <div>
           <h3
-            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase"
-            style={{ fontSize: 18, fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase font-medium"
+            style={{ fontSize: 18 }}
           >
             Brand Voice Configuration
           </h3>
-          <p className="font-['Inter',sans-serif] text-[#9ca3af] mt-1" style={{ fontSize: 14, fontWeight: 400 }}>
+          <p className="font-['Inter',sans-serif] text-[var(--color-intake-text-muted)] mt-1" style={{ fontSize: 14, fontWeight: 400 }}>
             Fine-tune how your AI represents your brand in conversation.
           </p>
         </div>
-        <button className="px-4 py-2 border border-[#374151] text-[#9ca3af] rounded-lg font-['Inter',sans-serif] text-[13px] hover:text-white hover:border-[#4b5563] transition-colors" style={{ fontWeight: 500 }}>
+        <button className="px-4 py-2 border border-[var(--color-intake-border)] text-[var(--color-intake-text-muted)] rounded-lg font-['Inter',sans-serif] text-[13px] hover:text-white hover:border-[var(--color-intake-border-hover)] transition-colors font-medium">
           Reset to Default
         </button>
       </div>
 
       {/* Formality + Response Length */}
       <div className="grid grid-cols-2 gap-6">
-        <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
+        <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-6">
           <div className="flex items-center justify-between mb-6">
             <h4
-              className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase"
-              style={{ fontWeight: 500 }}
+              className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase font-medium"
             >
               Formality Level
             </h4>
             <span
-              className="px-2 py-0.5 rounded text-[12px] font-['Inter',sans-serif] bg-[#3b82f6]/20 text-[#3b82f6] border border-[#3b82f6]/30"
-              style={{ fontWeight: 500 }}
+              className="px-2 py-0.5 rounded text-[12px] font-['Inter',sans-serif] bg-[var(--color-intake-accent)]/20 text-[var(--color-intake-accent)] border border-[var(--color-intake-accent)]/30 font-medium"
             >
               {getFormalityLabel()}
             </span>
@@ -90,9 +88,9 @@ export function ToneAndStyle() {
 
           <div className="mb-3">
             <div className="flex justify-between mb-2">
-              <span className="font-['JetBrains_Mono',monospace] text-[#6b7280] text-[11px] tracking-[0.6px] uppercase" style={{ fontWeight: 500 }}>Casual</span>
-              <span className="font-['JetBrains_Mono',monospace] text-[#6b7280] text-[11px] tracking-[0.6px] uppercase" style={{ fontWeight: 500 }}>Balanced</span>
-              <span className="font-['JetBrains_Mono',monospace] text-[#6b7280] text-[11px] tracking-[0.6px] uppercase" style={{ fontWeight: 500 }}>Formal</span>
+              <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-dim)] text-[11px] tracking-[0.6px] uppercase font-medium">Casual</span>
+              <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-dim)] text-[11px] tracking-[0.6px] uppercase font-medium">Balanced</span>
+              <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-dim)] text-[11px] tracking-[0.6px] uppercase font-medium">Formal</span>
             </div>
             <div className="relative">
               <input
@@ -101,27 +99,25 @@ export function ToneAndStyle() {
                 max="100"
                 value={formality}
                 onChange={(e) => setFormality(Number(e.target.value))}
-                className="w-full accent-[#3b82f6] h-2 bg-[#374151] rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-[#3b82f6] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-lg"
+                className="w-full accent-[var(--color-intake-accent)] h-2 bg-[var(--color-intake-border)] rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-[var(--color-intake-accent)] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-lg"
               />
             </div>
           </div>
 
-          <p className="font-['Inter',sans-serif] text-[#6b7280] text-[12px] mt-4" style={{ fontWeight: 400, lineHeight: "16px" }}>
+          <p className="font-['Inter',sans-serif] text-[var(--color-intake-text-dim)] text-[12px] mt-4">
             Determines how professional or relaxed the AI's language is.
           </p>
         </div>
 
-        <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
+        <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-6">
           <div className="flex items-center justify-between mb-6">
             <h4
-              className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase"
-              style={{ fontWeight: 500 }}
+              className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase font-medium"
             >
               Response Length
             </h4>
             <span
-              className="px-2 py-0.5 rounded text-[12px] font-['Inter',sans-serif] bg-[#10b981]/20 text-[#10b981] border border-[#10b981]/30"
-              style={{ fontWeight: 500 }}
+              className="px-2 py-0.5 rounded text-[12px] font-['Inter',sans-serif] bg-[var(--color-intake-success)]/20 text-[var(--color-intake-success)] border border-[var(--color-intake-success)]/30 font-medium"
             >
               {getResponseLengthLabel()}
             </span>
@@ -129,9 +125,9 @@ export function ToneAndStyle() {
 
           <div className="mb-3">
             <div className="flex justify-between mb-2">
-              <span className="font-['JetBrains_Mono',monospace] text-[#6b7280] text-[11px] tracking-[0.6px] uppercase" style={{ fontWeight: 500 }}>Concise</span>
-              <span className="font-['JetBrains_Mono',monospace] text-[#6b7280] text-[11px] tracking-[0.6px] uppercase" style={{ fontWeight: 500 }}>Balanced</span>
-              <span className="font-['JetBrains_Mono',monospace] text-[#6b7280] text-[11px] tracking-[0.6px] uppercase" style={{ fontWeight: 500 }}>Detailed</span>
+              <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-dim)] text-[11px] tracking-[0.6px] uppercase font-medium">Concise</span>
+              <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-dim)] text-[11px] tracking-[0.6px] uppercase font-medium">Balanced</span>
+              <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-dim)] text-[11px] tracking-[0.6px] uppercase font-medium">Detailed</span>
             </div>
             <div className="relative">
               <input
@@ -140,33 +136,31 @@ export function ToneAndStyle() {
                 max="100"
                 value={responseLength}
                 onChange={(e) => setResponseLength(Number(e.target.value))}
-                className="w-full accent-[#3b82f6] h-2 bg-[#374151] rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-[#3b82f6] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-lg"
+                className="w-full accent-[var(--color-intake-accent)] h-2 bg-[var(--color-intake-border)] rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-[var(--color-intake-accent)] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-lg"
               />
             </div>
           </div>
 
-          <p className="font-['Inter',sans-serif] text-[#6b7280] text-[12px] mt-4" style={{ fontWeight: 400, lineHeight: "16px" }}>
+          <p className="font-['Inter',sans-serif] text-[var(--color-intake-text-dim)] text-[12px] mt-4">
             Adjusts the verbosity of the AI's answers.
           </p>
         </div>
       </div>
 
       {/* Empathy Level */}
-      <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
+      <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-6">
         <div className="flex items-center justify-between mb-6">
           <h4
-            className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase"
-            style={{ fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase font-medium"
           >
             Empathy Level
           </h4>
           <span
-            className="px-2 py-0.5 rounded text-[12px] font-['Inter',sans-serif]"
+            className="px-2 py-0.5 rounded text-[12px] font-['Inter',sans-serif] font-medium"
             style={{
-              fontWeight: 500,
               color: getEmpathyColor(),
-              backgroundColor: `${getEmpathyColor()}20`,
-              border: `1px solid ${getEmpathyColor()}30`,
+              backgroundColor: `color-mix(in srgb, ${getEmpathyColor()} 20%, transparent)`,
+              border: `1px solid color-mix(in srgb, ${getEmpathyColor()} 30%, transparent)`,
             }}
           >
             {getEmpathyLabel()}
@@ -175,9 +169,9 @@ export function ToneAndStyle() {
 
         <div className="mb-3">
           <div className="flex justify-between mb-2">
-            <span className="font-['JetBrains_Mono',monospace] text-[#6b7280] text-[11px] tracking-[0.6px] uppercase" style={{ fontWeight: 500 }}>Analytical</span>
-            <span className="font-['JetBrains_Mono',monospace] text-[#6b7280] text-[11px] tracking-[0.6px] uppercase" style={{ fontWeight: 500 }}>Neutral</span>
-            <span className="font-['JetBrains_Mono',monospace] text-[#6b7280] text-[11px] tracking-[0.6px] uppercase" style={{ fontWeight: 500 }}>Empathetic</span>
+            <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-dim)] text-[11px] tracking-[0.6px] uppercase font-medium">Analytical</span>
+            <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-dim)] text-[11px] tracking-[0.6px] uppercase font-medium">Neutral</span>
+            <span className="font-['JetBrains_Mono',monospace] text-[var(--color-intake-text-dim)] text-[11px] tracking-[0.6px] uppercase font-medium">Empathetic</span>
           </div>
           <input
             type="range"
@@ -185,23 +179,22 @@ export function ToneAndStyle() {
             max="100"
             value={empathy}
             onChange={(e) => setEmpathy(Number(e.target.value))}
-            className="w-full accent-[#3b82f6] h-2 bg-[#374151] rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-[#3b82f6] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-lg"
+            className="w-full accent-[var(--color-intake-accent)] h-2 bg-[var(--color-intake-border)] rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-[var(--color-intake-accent)] [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow-lg"
           />
         </div>
 
-        <div className="mt-4 bg-[#111827] border border-[#374151] rounded-lg px-4 py-3 flex items-start gap-2">
-          <Lightbulb size={14} className="text-[#f59e0b] mt-0.5 shrink-0" />
-          <p className="font-['Inter',sans-serif] text-[#9ca3af] text-[13px]" style={{ fontWeight: 400, lineHeight: "18px" }}>
+        <div className="mt-4 bg-[var(--color-intake-panel)] border border-[var(--color-intake-border)] rounded-lg px-4 py-3 flex items-start gap-2">
+          <Lightbulb size={14} className="text-[var(--color-intake-warning)] mt-0.5 shrink-0" />
+          <p className="font-['Inter',sans-serif] text-[var(--color-intake-text-muted)] text-[13px]">
             High empathy ensures the AI acknowledges user frustration and uses apologetic language when appropriate.
           </p>
         </div>
       </div>
 
       {/* Personality Traits */}
-      <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
+      <div className="bg-[var(--color-intake-card)] border border-[var(--color-intake-border)] rounded-xl p-6">
         <h4
-          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4"
-          style={{ fontWeight: 500 }}
+          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4 font-medium"
         >
           Personality Traits
         </h4>
@@ -211,12 +204,11 @@ export function ToneAndStyle() {
             <button
               key={trait.id}
               onClick={() => toggleTrait(trait.id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-['Inter',sans-serif] text-[13px] transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-['Inter',sans-serif] text-[13px] transition-all font-medium ${
                 trait.active
-                  ? "bg-[#3b82f6]/20 text-[#3b82f6] border border-[#3b82f6]/40"
-                  : "bg-[#111827] text-[#9ca3af] border border-[#374151] hover:border-[#4b5563]"
+                  ? "bg-[var(--color-intake-accent)]/20 text-[var(--color-intake-accent)] border border-[var(--color-intake-accent)]/40"
+                  : "bg-[var(--color-intake-panel)] text-[var(--color-intake-text-muted)] border border-[var(--color-intake-border)] hover:border-[var(--color-intake-border-hover)]"
               }`}
-              style={{ fontWeight: 500 }}
             >
               <span>{trait.emoji}</span>
               {trait.label}

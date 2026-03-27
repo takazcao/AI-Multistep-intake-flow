@@ -26,8 +26,8 @@ export function ResponseTemplates() {
       <div className="flex items-center justify-between">
         <div>
           <h3
-            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase"
-            style={{ fontSize: 18, fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-white tracking-[0.45px] uppercase font-medium"
+            style={{ fontSize: 18 }}
           >
             Create Template
           </h3>
@@ -36,10 +36,10 @@ export function ResponseTemplates() {
           </p>
         </div>
         <div className="flex gap-2">
-          <button className="px-4 py-2 border border-intake-border text-intake-text-muted rounded-lg font-['Inter',sans-serif] text-[13px] hover:text-white hover:border-intake-border-hover transition-colors" style={{ fontWeight: 500 }}>
+          <button className="px-4 py-2 border border-intake-border text-intake-text-muted rounded-lg font-['Inter',sans-serif] text-[13px] hover:text-white hover:border-intake-border-hover transition-colors font-medium">
             Reset
           </button>
-          <button className="px-4 py-2 bg-intake-accent text-white rounded-lg font-['Inter',sans-serif] text-[13px] hover:bg-intake-accent-hover transition-colors" style={{ fontWeight: 500 }}>
+          <button className="px-4 py-2 bg-intake-accent text-white rounded-lg font-['Inter',sans-serif] text-[13px] hover:bg-intake-accent-hover transition-colors font-medium">
             Save Template
           </button>
         </div>
@@ -55,10 +55,9 @@ export function ResponseTemplates() {
               value={templateName}
               onChange={(e) => setTemplateName(e.target.value)}
               className="w-full bg-intake-panel border border-intake-border rounded-lg px-4 py-2.5 text-white font-['Inter',sans-serif] text-[14px] outline-none focus:border-intake-accent transition-colors"
-              style={{ fontWeight: 400 }}
             />
           </FormField>
-          
+
           <FormField id="template-category" label="Category">
             <div className="relative">
               <select
@@ -66,7 +65,6 @@ export function ResponseTemplates() {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 className="w-full bg-intake-panel border border-intake-border rounded-lg px-4 py-2.5 text-white font-['Inter',sans-serif] text-[14px] outline-none appearance-none focus:border-intake-accent transition-colors"
-                style={{ fontWeight: 400 }}
               >
                 <option value="billing">Billing & Subscriptions</option>
                 <option value="technical">Technical Support</option>
@@ -81,7 +79,7 @@ export function ResponseTemplates() {
 
       {/* Trigger Conditions */}
       <SectionCard title="Trigger Conditions">
-        <p className="font-['Inter',sans-serif] text-intake-text-dim text-[13px] mb-4 -mt-3" style={{ fontWeight: 400 }}>
+        <p className="font-['Inter',sans-serif] text-intake-text-dim text-[13px] mb-4 -mt-3">
           Select intents or keywords that should trigger this response template.
         </p>
 
@@ -90,7 +88,6 @@ export function ResponseTemplates() {
             <span
               key={cond.id}
               className="flex items-center gap-1.5 bg-intake-panel border border-intake-border rounded-lg px-3 py-1.5 text-intake-text-secondary font-['Inter',sans-serif] text-[13px]"
-              style={{ fontWeight: 400 }}
             >
               {cond.label}
               <button
@@ -101,7 +98,7 @@ export function ResponseTemplates() {
               </button>
             </span>
           ))}
-          <button className="flex items-center gap-1 text-intake-text-dim hover:text-white font-['Inter',sans-serif] text-[13px] transition-colors px-2" style={{ fontWeight: 500 }}>
+          <button className="flex items-center gap-1 text-intake-text-dim hover:text-white font-['Inter',sans-serif] text-[13px] transition-colors px-2 font-medium">
             + Add Condition
           </button>
         </div>
@@ -115,7 +112,7 @@ export function ResponseTemplates() {
           >
             {requireConfidence && <Check size={10} className="text-white" />}
           </div>
-          <span className="font-['Inter',sans-serif] text-intake-text-secondary text-[14px]" style={{ fontWeight: 400 }}>
+          <span className="font-['Inter',sans-serif] text-intake-text-secondary text-[14px]">
             Require confidence &gt; 80%
           </span>
         </label>
@@ -125,12 +122,11 @@ export function ResponseTemplates() {
       <SectionCard>
         <div className="flex items-center justify-between mb-3">
           <h4
-            className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase"
-            style={{ fontWeight: 500 }}
+            className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase font-medium"
           >
             Response Body
           </h4>
-          <button className="flex items-center gap-1.5 text-intake-success font-['Inter',sans-serif] text-[13px] hover:text-[#34d399] transition-colors" style={{ fontWeight: 500 }}>
+          <button className="flex items-center gap-1.5 text-intake-success font-['Inter',sans-serif] text-[13px] hover:text-[var(--color-intake-success-light)] transition-colors font-medium">
             <Sparkles size={14} />
             Generate with AI
           </button>
@@ -151,7 +147,7 @@ export function ResponseTemplates() {
             <Link size={14} />
           </button>
           <div className="w-px h-4 bg-intake-border mx-1" />
-          <button className="flex items-center gap-1 text-intake-accent font-['Inter',sans-serif] text-[12px] px-2 py-1 rounded hover:bg-[#1e3a5f] transition-colors" style={{ fontWeight: 500 }}>
+          <button className="flex items-center gap-1 text-intake-accent font-['Inter',sans-serif] text-[12px] px-2 py-1 rounded hover:bg-[var(--color-intake-accent-bg)] transition-colors font-medium">
             {"{{}"} Insert Variable
           </button>
         </div>
@@ -162,16 +158,15 @@ export function ResponseTemplates() {
           onChange={(e) => setResponseBody(e.target.value)}
           rows={8}
           className="w-full bg-intake-panel border border-intake-border rounded-b-lg px-4 py-3 text-intake-text-secondary font-mono text-[13px] outline-none focus:border-intake-accent transition-colors resize-none"
-          style={{ fontWeight: 400, lineHeight: "20px" }}
         />
 
         {/* Info */}
         <div className="mt-3 bg-intake-panel border border-intake-border rounded-lg px-4 py-2.5 flex items-center gap-2">
           <div className="w-4 h-4 rounded-full bg-intake-accent flex items-center justify-center shrink-0">
-            <span className="text-white text-[10px]" style={{ fontWeight: 700 }}>i</span>
+            <span className="text-white text-[10px] font-bold">i</span>
           </div>
-          <p className="font-['Inter',sans-serif] text-intake-text-muted text-[12px]" style={{ fontWeight: 400 }}>
-            Variables like <code className="text-intake-accent bg-[#1e3a5f] px-1 rounded">{"{{user.first_name}}"}</code> will be dynamically replaced with real data during the conversation.
+          <p className="font-['Inter',sans-serif] text-intake-text-muted text-[12px]">
+            Variables like <code className="text-intake-accent bg-[var(--color-intake-accent-bg)] px-1 rounded">{"{{user.first_name}}"}</code> will be dynamically replaced with real data during the conversation.
           </p>
         </div>
       </SectionCard>
