@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Check, ExternalLink, ChevronDown, AlertCircle, Zap } from "lucide-react";
+import { Check, ExternalLink, AlertCircle, Zap } from "lucide-react";
+import { Switch } from "../ui/switch";
 
 interface Integration {
   id: string;
@@ -175,35 +176,21 @@ export function IntegrationSettings() {
             <span className="font-['Inter',sans-serif] text-[#d1d5db] text-[14px]" style={{ fontWeight: 400 }}>
               Notify on integration errors
             </span>
-            <button
-              onClick={() => setNotifyOnError(!notifyOnError)}
-              className={`w-10 h-5 rounded-full transition-colors relative ${
-                notifyOnError ? "bg-[#3b82f6]" : "bg-[#374151]"
-              }`}
-            >
-              <div
-                className={`w-4 h-4 rounded-full bg-white absolute top-0.5 transition-transform ${
-                  notifyOnError ? "translate-x-5" : "translate-x-0.5"
-                }`}
-              />
-            </button>
+            <Switch
+              checked={notifyOnError}
+              onCheckedChange={setNotifyOnError}
+              aria-label="Notify on integration errors"
+            />
           </div>
           <div className="flex items-center justify-between">
             <span className="font-['Inter',sans-serif] text-[#d1d5db] text-[14px]" style={{ fontWeight: 400 }}>
               Auto-retry failed messages
             </span>
-            <button
-              onClick={() => setRetryFailed(!retryFailed)}
-              className={`w-10 h-5 rounded-full transition-colors relative ${
-                retryFailed ? "bg-[#3b82f6]" : "bg-[#374151]"
-              }`}
-            >
-              <div
-                className={`w-4 h-4 rounded-full bg-white absolute top-0.5 transition-transform ${
-                  retryFailed ? "translate-x-5" : "translate-x-0.5"
-                }`}
-              />
-            </button>
+            <Switch
+              checked={retryFailed}
+              onCheckedChange={setRetryFailed}
+              aria-label="Auto-retry failed messages"
+            />
           </div>
         </div>
       </div>

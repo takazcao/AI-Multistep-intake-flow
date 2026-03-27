@@ -3,7 +3,7 @@ import { X, ChevronDown, Plus } from "lucide-react";
 
 export function TicketTriage() {
   const [ruleName, setRuleName] = useState("Billing Inquiries - Tier 1");
-  const [routeVia, setRouteVia] = useState("bendesk");
+  const [routeVia, setRouteVia] = useState("zendesk");
   const [confidence, setConfidence] = useState("medium");
   const [autonomyLevel, setAutonomyLevel] = useState("complex");
 
@@ -15,16 +15,8 @@ export function TicketTriage() {
     { id: "5", label: "charge" },
   ]);
 
-  const [keywords2, setKeywords2] = useState([
-    { id: "6", label: "refund" },
-    { id: "7", label: "invoice" },
-    { id: "8", label: "payment" },
-    { id: "9", label: "billing" },
-    { id: "10", label: "charge" },
-  ]);
-
-  const removeKeyword = (id: string, setFn: React.Dispatch<React.SetStateAction<{ id: string; label: string }[]>>, list: { id: string; label: string }[]) => {
-    setFn(list.filter((k) => k.id !== id));
+  const removeKeyword = (id: string) => {
+    setKeywords(keywords.filter((k) => k.id !== id));
   };
 
   return (
@@ -75,7 +67,6 @@ export function TicketTriage() {
                 className="w-full bg-[#111827] border border-[#374151] rounded-lg px-4 py-2.5 text-white font-['Inter',sans-serif] text-[14px] outline-none appearance-none focus:border-[#3b82f6] transition-colors"
                 style={{ fontWeight: 400 }}
               >
-                <option value="bendesk">Bendesk</option>
                 <option value="zendesk">Zendesk</option>
                 <option value="slack">Slack</option>
                 <option value="email">Email</option>
@@ -97,10 +88,10 @@ export function TicketTriage() {
                 className="w-full bg-[#111827] border border-[#374151] rounded-lg px-4 py-2.5 text-white font-['Inter',sans-serif] text-[14px] outline-none appearance-none focus:border-[#3b82f6] transition-colors"
                 style={{ fontWeight: 400 }}
               >
-                <option value="low">Low(30%+)</option>
-                <option value="medium">Medium(50%+)</option>
-                <option value="high">High(80%+)</option>
-                <option value="very-high">Very High(95%+)</option>
+                <option value="low">Low (30%+)</option>
+                <option value="medium">Medium (50%+)</option>
+                <option value="high">High (80%+)</option>
+                <option value="very-high">Very High (95%+)</option>
               </select>
               <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6b7280] pointer-events-none" />
             </div>
@@ -168,7 +159,7 @@ export function TicketTriage() {
         </div>
       </div>
 
-      {/* Match Keywords 1 */}
+      {/* Match Keywords and Intents */}
       <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
         <h4
           className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4"
@@ -186,51 +177,18 @@ export function TicketTriage() {
             >
               {kw.label}
               <button
-                onClick={() => removeKeyword(kw.id, setKeywords, keywords)}
+                onClick={() => removeKeyword(kw.id)}
                 className="text-[#6b7280] hover:text-white transition-colors"
+                aria-label={`Remove keyword ${kw.label}`}
               >
                 <X size={12} />
               </button>
             </span>
           ))}
-          <button className="flex items-center justify-center w-8 h-8 rounded-lg border border-[#374151] text-[#6b7280] hover:text-white hover:border-[#4b5563] transition-colors">
-            <Plus size={14} />
-          </button>
-        </div>
-
-        <p className="font-['Inter',sans-serif] text-[#6b7280] text-[13px]" style={{ fontWeight: 400, lineHeight: "18px" }}>
-          Agent uses semantic understanding beyond exact matches.
-          <br />
-          Keywords help focus the classification model on relevant ticket content.
-        </p>
-      </div>
-
-      {/* Match Keywords 2 */}
-      <div className="bg-[#1f2937] border border-[#374151] rounded-xl p-6">
-        <h4
-          className="font-['JetBrains_Mono',monospace] text-white text-[14px] tracking-[0.6px] uppercase mb-4"
-          style={{ fontWeight: 500 }}
-        >
-          Match Keywords and Intents
-        </h4>
-
-        <div className="flex flex-wrap gap-2 mb-4">
-          {keywords2.map((kw) => (
-            <span
-              key={kw.id}
-              className="flex items-center gap-1.5 bg-[#111827] border border-[#374151] rounded-lg px-3 py-1.5 text-[#d1d5db] font-['Inter',sans-serif] text-[13px]"
-              style={{ fontWeight: 400 }}
-            >
-              {kw.label}
-              <button
-                onClick={() => removeKeyword(kw.id, setKeywords2, keywords2)}
-                className="text-[#6b7280] hover:text-white transition-colors"
-              >
-                <X size={12} />
-              </button>
-            </span>
-          ))}
-          <button className="flex items-center justify-center w-8 h-8 rounded-lg border border-[#374151] text-[#6b7280] hover:text-white hover:border-[#4b5563] transition-colors">
+          <button
+            className="flex items-center justify-center w-8 h-8 rounded-lg border border-[#374151] text-[#6b7280] hover:text-white hover:border-[#4b5563] transition-colors"
+            aria-label="Add keyword"
+          >
             <Plus size={14} />
           </button>
         </div>

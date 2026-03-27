@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Check, Rocket, Shield, Clock, AlertCircle, Globe, Users, BarChart3 } from "lucide-react";
+import { Switch } from "../ui/switch";
 
 export function Deployment() {
   const [rolloutPercentage, setRolloutPercentage] = useState(10);
@@ -156,18 +157,11 @@ export function Deployment() {
                   Enable real-time monitoring
                 </span>
               </div>
-              <button
-                onClick={() => setEnableMonitoring(!enableMonitoring)}
-                className={`w-10 h-5 rounded-full transition-colors relative ${
-                  enableMonitoring ? "bg-[#3b82f6]" : "bg-[#374151]"
-                }`}
-              >
-                <div
-                  className={`w-4 h-4 rounded-full bg-white absolute top-0.5 transition-transform ${
-                    enableMonitoring ? "translate-x-5" : "translate-x-0.5"
-                  }`}
-                />
-              </button>
+              <Switch
+                checked={enableMonitoring}
+                onCheckedChange={setEnableMonitoring}
+                aria-label="Enable real-time monitoring"
+              />
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -176,18 +170,11 @@ export function Deployment() {
                   Auto-rollback on error spike
                 </span>
               </div>
-              <button
-                onClick={() => setEnableRollback(!enableRollback)}
-                className={`w-10 h-5 rounded-full transition-colors relative ${
-                  enableRollback ? "bg-[#3b82f6]" : "bg-[#374151]"
-                }`}
-              >
-                <div
-                  className={`w-4 h-4 rounded-full bg-white absolute top-0.5 transition-transform ${
-                    enableRollback ? "translate-x-5" : "translate-x-0.5"
-                  }`}
-                />
-              </button>
+              <Switch
+                checked={enableRollback}
+                onCheckedChange={setEnableRollback}
+                aria-label="Auto-rollback on error spike"
+              />
             </div>
           </div>
         </div>
